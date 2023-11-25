@@ -1,0 +1,122 @@
+void fact(int lim)
+{
+	int nNum = 0, i = 0, j = 0 ;
+	nNum = lim;
+	//nNum = tar / 10;
+	int nL = nNum;
+	int reset_i = 0;
+
+	clock_t start = clock();
+
+	/*int* mptr = NULL;
+	mptr = (int*)malloc(nNum * sizeof(int));*/
+	int nLimit = 6;
+
+	/*for (i = 0; i < nNum ; i++)
+	{
+		mptr[i] = nNum - i;
+	}*/
+	int* aptr = NULL;
+	aptr = (int*)calloc((nNum * nLimit) , sizeof(int));
+	int* bptr = NULL;
+	bptr = (int*)calloc((nNum * nLimit) , sizeof(int));
+
+	/*for (i = 0; i < nNum * nLimit; i++)
+	{
+		bptr[i] = NULL;
+	}
+	for (i = 0; i < nNum * nLimit; i++)
+	{
+		aptr[i] = NULL;
+	}*/
+
+	int nDig = 0;
+	i = reset_i;
+
+	while (((nNum % 10) != 0), i <= nDig)
+	{
+		bptr[i] = nNum % 10;
+		nNum /= 10;
+		nDig++;
+		i++;
+		if (nNum == 0)
+		{
+			break;
+		}
+	}
+
+	int nrem = 0, nquo = 0,ntemp = 0;
+	nNum = nL;
+	int nround = 0;
+	int ncount = 0;
+	int nz = 0;
+	int nxt = 0;
+	int ny = 0;
+	ntemp = nNum;
+	for (i = 0,j = 0; i < nNum - 1; i++)
+	{
+		ntemp--;
+		ncount = 0;
+		nround = 0;
+		//nxt = mptr[i + 1];
+		nxt = ntemp;
+		while (true)
+		{
+			nxt = nxt / 10;
+			ncount++;
+			if (nxt == 0)
+			{
+				break;
+			}
+		}
+		nz = nDig + ncount + ny;
+		while (*bptr >= 0 && j < nz)
+		{
+			nDig = 0;
+			aptr[j] = ((bptr[j] * ntemp) + nquo) % 10;
+			nrem = ((bptr[j] * ntemp) + nquo) % 10;
+			nquo = ((bptr[j] * ntemp) + nquo) / 10;
+			
+			if (nrem == 0 && nquo == 0 && j == nz - 1)
+			{
+				break;
+			}
+			nround++;
+			j++;
+		}
+		ny = nround;
+		//nz = ncount + nround;
+		int ni = i;
+		for (i = 0; i < nround; i++)
+		{
+			bptr[i] = aptr[i];
+		}
+		i = ni, j = 0;
+	}
+	j = 0;
+	
+	int no_of_dig = 0;
+
+	clock_t end = clock();
+	double time = (end - start) / CLOCKS_PER_SEC;
+
+	printf("The Factorial is : \n\n");
+
+	for (i = nz - 2; i >= 0; i--)
+	{
+		printf("%d", bptr[i]);
+		no_of_dig++;
+	}
+
+	printf("\nNo of digits : %d\n\n", no_of_dig);
+
+	/*clock_t end = clock();
+	double time = (end - start) / CLOCKS_PER_SEC;*/
+
+	printf("Execution time : %0.1lf seconds\n", time);
+
+	//free(mptr);
+	free(aptr);
+	free(bptr);
+
+}
