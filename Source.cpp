@@ -126,6 +126,8 @@ void fact(int lim)
 }
 int main()
 {
+	//changes are made from here.
+	//changes are made here in this line.
 	/*thread t1(fact,50, 50);
 	thread t2(fact,50, 40);
 	thread t3(fact,50, 30);
@@ -143,7 +145,9 @@ int main()
 	t5.join();											  
 	std::this_thread::sleep_for(std::chrono::milliseconds(100));*/
 
-	fact(100000);
+	fact(100);
+
+	printf("This is the end of line");
 
 	return 0;
 }
